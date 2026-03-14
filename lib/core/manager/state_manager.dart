@@ -113,6 +113,12 @@ class StateManager extends ChangeNotifier {
     return field.validator(field.value.value);
   }
 
+  /// Checks if a specific field has been interacted with (touched)
+  bool isFieldTouched(String fieldName, {String groupId = 'default'}) {
+    final field = _groups[groupId]?[fieldName];
+    return field?.touched ?? false;
+  }
+
   void Function() touchField(String fieldName,
       {String groupId = 'default'}) {
     return () {

@@ -36,7 +36,7 @@ void main() async {
   await AppInitializer.init(
     apiClient: ApiClientType.httpClient, // ← swap: .httpClient
     stateManager: StateManagerType.riverpod, // ← swap: .riverpod
-    router: RouterType.autoRoute, // ← swap: .autoRoute
+    router: RouterType.goRouter, // ← swap: .autoRoute
     cache: CacheType.sharedPrefs, // ← swap: .hive
     database: DatabaseType.sqflite, // ← swap: .isar
   );
