@@ -6,6 +6,7 @@
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
+import '../../data/models/post.dart';
 import 'database_storage.dart';
 
 class SqfliteDatabaseImpl implements DatabaseStorage {
@@ -40,22 +41,20 @@ class SqfliteDatabaseImpl implements DatabaseStorage {
   }
 
   @override
-  Future<void> saveDraft(Map<String, dynamic> post) async {
+  Future<void> savePost(Post post) async {
     await _database.insert(
       _tablePost,
-      {...post, 'savedAt': DateTime.now().toIso8601String()},
+      {...post.toJson(), 'savedAt': DateTime.now().toIso8601String()},
       conflictAlgorithm: ConflictAlgorithm.replace,
     );
   }
 
   @override
-  Future<List<Map<String, dynamic>>> getDrafts() =>
-      _database.query(_tablePost, orderBy: 'savedAt DESC');
+  Future<Post> getPost(int postId) =>
+      throw UnimplementedError();
 
   @override
-  Future<void> deleteDraft(int localId) =>
-      _database.delete(_tablePost, where: 'id = ?', whereArgs: [localId]);
+  Future<void> deletePost(int postId) =>
+      _database.delete(_tablePost, where: 'id = ?', whereArgs: [postId]);
 
-  @override
-  Future<void> clearDrafts() => _database.delete(_tablePost);
 }

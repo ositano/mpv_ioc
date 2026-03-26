@@ -4,15 +4,21 @@ import '../../../core/api/exception/failure.dart';
 import '../../../core/api/responses/api_response.dart';
 import '../../../core/api/services/api_services.dart';
 import '../../../core/data/models/post.dart';
+import '../../../core/storage/local_storage.dart';
 
 abstract class PostDetailRepository {
   Future<Either<Failure, ApiResponse<Post>>> getPost(int id);
+  Future<Post> getPostDetail(int postId);
 }
 
 class PostDetailRepositoryImpl implements PostDetailRepository {
   final ApiServices apiServices;
-  const PostDetailRepositoryImpl({required this.apiServices});
+  final LocalStorage localStorage;
+  const PostDetailRepositoryImpl({required this.apiServices, required this.localStorage});
   @override
   Future<Either<Failure, ApiResponse<Post>>> getPost(int id) =>
       apiServices.getPost(id);
+  @override
+  Future<Post> getPostDetail(int postId) =>
+      localStorage.getPost(postId);
 }

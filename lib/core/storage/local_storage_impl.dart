@@ -1,5 +1,6 @@
 // Author: Green Onyeji (https://github.com/ositano/) (https://www.linkedin.com/in/green-onyeji-11608a97/)
 // lib/core/storage/local_storage_impl.dart
+import '../data/models/post.dart';
 import 'cache/cache_storage.dart';
 import 'database/database_storage.dart';
 import 'local_storage.dart';
@@ -23,8 +24,7 @@ class LocalStorageImpl implements LocalStorage {
   @override Future<void>    clear()                   => cache.clear();
 
   // ── DatabaseStorage ─────────────────────────────────────────────
-  @override Future<void>                       saveDraft(Map<String, dynamic> p)  => db.saveDraft(p);
-  @override Future<List<Map<String, dynamic>>> getDrafts()                         => db.getDrafts();
-  @override Future<void>                       deleteDraft(int id)                 => db.deleteDraft(id);
-  @override Future<void>                       clearDrafts()                       => db.clearDrafts();
+  @override Future<void>                       savePost(Post p)  => db.savePost(p);
+  @override Future<Post> getPost(int postId)                     => db.getPost(postId);
+  @override Future<void>                       deletePost(int id) => db.deletePost(id);
 }

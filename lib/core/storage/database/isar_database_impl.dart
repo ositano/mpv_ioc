@@ -14,6 +14,7 @@
 
 // import 'package:isar/isar.dart';
 // import 'package:path_provider/path_provider.dart';
+import '../../data/models/post.dart';
 import 'database_storage.dart';
 
 // @Collection()
@@ -32,18 +33,15 @@ class IsarDatabaseImpl implements DatabaseStorage {
   }
 
   @override
-  Future<void> saveDraft(Map<String, dynamic> post) =>
+  Future<void> savePost(Post post) =>
       throw UnimplementedError();
 
   @override
-  Future<List<Map<String, dynamic>>> getDrafts() =>
+  Future<Post> getPost(int postId) =>
       throw UnimplementedError();
 
   @override
-  Future<void> deleteDraft(int localId) =>
+  Future<void> deletePost(int localId) =>
       throw UnimplementedError();
 
-  @override
-  Future<void> clearDrafts() =>
-      throw UnimplementedError();
 }

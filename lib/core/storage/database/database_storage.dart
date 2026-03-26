@@ -6,12 +6,13 @@
 //
 // Expand the interface with your domain-specific methods
 // (e.g. saveDraftPost, getCachedFeed) as your app grows.
+import '../../data/models/post.dart';
+
 abstract class DatabaseStorage {
   Future<void> init();
 
   // ── Example: offline draft posts ─────────────────────────────
-  Future<void>         saveDraft(Map<String, dynamic> post);
-  Future<List<Map<String, dynamic>>> getDrafts();
-  Future<void>         deleteDraft(int localId);
-  Future<void>         clearDrafts();
+  Future<void>         savePost(Post post);
+  Future<Post> getPost(int postId);
+  Future<void>         deletePost(int postId);
 }
